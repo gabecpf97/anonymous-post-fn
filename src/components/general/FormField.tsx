@@ -1,19 +1,27 @@
-import React from 'react'
-import { TextInput } from 'react-native'
+import React, { ChangeEvent } from 'react'
+import { View } from 'react-native'
 
 interface props {
     name: string,
-    onChnageFn: () => {},
+    onChnageFn: (e: ChangeEvent<HTMLInputElement>) => void,
+    type: string,
     isRequired?: boolean,
     value?: any
 }
 
-export const FormField: React.FC<props> = ({name, isRequired, onChnageFn}) => {
+export const FormField: React.FC<props> = 
+({name, isRequired, type, onChnageFn, value}) => {
 
     return (
-        <TextInput 
-            placeholder={name}
-            
-        />
+        <View>
+            <label>{name}</label>   
+            <input 
+                name={name} 
+                required={isRequired}
+                type={type}
+                onChange={(e) => onChnageFn(e)}
+                value={value}
+            />
+        </View>
     )
 }

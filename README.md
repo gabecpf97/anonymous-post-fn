@@ -1,6 +1,6 @@
 # This is the frontend of Anon App
 ## Build using 
-- react native
+- react
 - typescript
 
 # Getting Started with Create React App

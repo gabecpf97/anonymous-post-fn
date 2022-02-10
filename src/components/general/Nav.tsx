@@ -1,17 +1,14 @@
 import React from 'react'
-import { Text, View } from 'react-native'
-import { Link } from 'react-router-native'
+import { Link } from 'react-router-dom'
 
 export const Nav: React.FC = () => {
 
     return (
-        <View>
+        <div>
             <Link to="/">
-                <Text>Anon</Text>
+                <h2>Anon</h2>
             </Link>
-            <Link to='/sign-up'>
-                <Text>Sign Up</Text>
-            </Link>
-        </View>
+            <Link to='/sign-up'>Sign Up</Link>
+        </div>
     )
 }

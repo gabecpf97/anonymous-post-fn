@@ -1,5 +1,4 @@
 import React, { ChangeEvent, SyntheticEvent, useState } from 'react'
-import { View } from 'react-native'
 import { FormField } from '../general/FormField';
 import { SubmitField } from '../general/SubmitField';
 
@@ -39,7 +38,7 @@ export const SignUp: React.FC = () => {
     }
 
     return (
-        <View>
+        <div>
             <form onSubmit={(e: SyntheticEvent) => handleSubmit(e)}>
                 <FormField name='username' isRequired={true} 
                     type='text' onChnageFn={onUsernameChnage}/>
@@ -51,6 +50,6 @@ export const SignUp: React.FC = () => {
                     type='text' onChnageFn={onConfirmChange}/>
                 <SubmitField display="Sign Up" />
             </form>
-        </View>
+        </div>
     )
 }

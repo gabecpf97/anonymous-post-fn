@@ -1,5 +1,4 @@
 import React, { ChangeEvent } from 'react'
-import { View } from 'react-native'
 
 interface props {
     name: string,
@@ -13,7 +12,7 @@ export const FormField: React.FC<props> =
 ({name, isRequired, type, onChnageFn, value}) => {
 
     return (
-        <View>
+        <div>
             <label>{name}</label>   
             <input 
                 name={name} 
@@ -22,6 +21,6 @@ export const FormField: React.FC<props> =
                 onChange={(e) => onChnageFn(e)}
                 value={value}
             />
-        </View>
+        </div>
     )
 }

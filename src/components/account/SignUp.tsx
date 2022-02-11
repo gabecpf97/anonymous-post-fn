@@ -1,12 +1,22 @@
 import React, { ChangeEvent, SyntheticEvent, useState } from 'react'
+import { Error } from '../general/Errors';
 import { FormField } from '../general/FormField';
 import { SubmitField } from '../general/SubmitField';
+
+interface err_detail {
+    value: string,
+    msg: string,
+    param: string,
+    location: string
+}
+
 
 export const SignUp: React.FC = () => {
     const [username, setUsername] = useState<string>();
     const [email, setEmail] = useState<string>();
     const [password, setPassword] = useState<string>();
     const [confirm_password, setConfirm] = useState<string>();
+    const [errors, setErrors] = useState<string | err_detail[]>();
 
     const onUsernameChnage = (e: ChangeEvent<HTMLInputElement>) => {
         setUsername(e.target.value);
@@ -24,7 +34,7 @@ export const SignUp: React.FC = () => {
         setConfirm(e.target.value);
     }
 
-    const handleSubmit = (e: SyntheticEvent) => {
+    const handleSubmit = async (e: SyntheticEvent) => {
         e.preventDefault();
         // fetch post data to backend
         //nav to home page
@@ -34,7 +44,19 @@ export const SignUp: React.FC = () => {
             password,
             confirm_password
         }
-        console.log(user_info);
+        const response: Response = await fetch(`http://localhost:5000/user/create`, {
+            method: "POST",
+            body: JSON.stringify(user_info),
+            headers: {
+                "Content-Type": "application/json",
+            }
+        });
+        const data: any = await response.json();
+        if (data.err) {
+            setErrors(data.err);
+        } else {
+            console.log(data);
+        }
     }
 
     return (
@@ -50,6 +72,7 @@ export const SignUp: React.FC = () => {
                     type='text' onChnageFn={onConfirmChange}/>
                 <SubmitField display="Sign Up" />
             </form>
+            {errors && <Error errors={errors} />}
         </div>
     )
 }

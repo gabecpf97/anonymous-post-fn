@@ -8,6 +8,10 @@ body {
     color: rgb(229 231 235);
 }
 
+input {
+    color: black
+}
+
 .pages {
     border-radius: 10px;
     background-color: rgb(30 64 175);

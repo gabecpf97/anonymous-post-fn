@@ -12,7 +12,7 @@ export const FormField: React.FC<props> =
 ({name, isRequired, type, onChnageFn, value}) => {
 
     return (
-        <div>
+        <div className='flex flex-col mb-5'>
             <label>{name}</label>   
             <input 
                 name={name} 

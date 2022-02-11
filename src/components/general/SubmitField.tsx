@@ -7,6 +7,6 @@ interface props {
 export const SubmitField: React.FC<props> = ({ display }) => {
 
     return (
-        <input className='submit' type="submit" value={display} />
+        <input className='pages' type="submit" value={display} />
     )
 }

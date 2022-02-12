@@ -1,4 +1,5 @@
 import React, { ChangeEvent, SyntheticEvent, useState } from 'react'
+import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { Error } from '../general/Errors';
 import { FormField } from '../general/FormField';
 import { SubmitField } from '../general/SubmitField';
@@ -12,6 +13,7 @@ interface err_detail {
 
 
 export const SignUp: React.FC = () => {
+    const navgator: NavigateFunction = useNavigate();
     const [username, setUsername] = useState<string>();
     const [email, setEmail] = useState<string>();
     const [password, setPassword] = useState<string>();
@@ -36,8 +38,6 @@ export const SignUp: React.FC = () => {
 
     const handleSubmit = async (e: SyntheticEvent) => {
         e.preventDefault();
-        // fetch post data to backend
-        //nav to home page
         const user_info = {
             username,
             email,
@@ -56,6 +56,9 @@ export const SignUp: React.FC = () => {
             setErrors(data.err);
         } else {
             console.log(data);
+            // nav to confirm page and ask user to check email
+            // navgator('/');
+            localStorage.setItem('userID', data.id);
         }
     }
 

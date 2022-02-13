@@ -1,5 +1,5 @@
 import React, { ChangeEvent, SyntheticEvent, useState } from 'react'
-import { NavigateFunction, useNavigate } from 'react-router-dom';
+// import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { Error } from '../general/Errors';
 import { FormField } from '../general/FormField';
 import { SubmitField } from '../general/SubmitField';
@@ -13,7 +13,7 @@ interface err_detail {
 
 
 export const SignUp: React.FC = () => {
-    const navgator: NavigateFunction = useNavigate();
+    // const navgator: NavigateFunction = useNavigate();
     const [username, setUsername] = useState<string>();
     const [email, setEmail] = useState<string>();
     const [password, setPassword] = useState<string>();

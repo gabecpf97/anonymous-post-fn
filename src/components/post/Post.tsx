@@ -22,7 +22,11 @@ export const Post: React.FC<props> = ({ id }) => {
     useEffect(() => {
         const fetchPost: Function = async () => {
             try {
-                const response: Response = await fetch (`http://localhost:5000/post/${id}`);
+                const response: Response = await fetch (`http://localhost:5000/post/${id}`, {
+                    headers: {
+                        "Authrization": `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
                 const data: any = await response.json();
                 if (data.err) {
                     setErrors(data.err);

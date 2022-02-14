@@ -1,14 +1,8 @@
 import React from 'react'
+import { ErrorDetail } from '../../interfaces/myInterfaces'
 
 interface props {
-    errors: string | err_detail[]
-}
-
-interface err_detail {
-    value: string,
-    msg: string,
-    param: string,
-    location: string
+    errors: string | ErrorDetail[]
 }
 
 export const Error: React.FC<props> = ({ errors }) => {
@@ -18,7 +12,7 @@ export const Error: React.FC<props> = ({ errors }) => {
             {typeof(errors) === 'string' && 
                 <p>{errors}</p>
             }
-            {typeof(errors) !== 'string' && errors.map((err: err_detail, i: number) => {
+            {typeof(errors) !== 'string' && errors.map((err: ErrorDetail, i: number) => {
                 return (
                     <p key={i}>{err.msg}</p>
                 )

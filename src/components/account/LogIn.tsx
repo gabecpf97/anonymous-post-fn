@@ -1,10 +1,12 @@
 import React, { ChangeEvent, SyntheticEvent, useState } from 'react'
+import { ErrorDetail } from '../../interfaces/myInterfaces';
 import { FormField } from '../general/FormField';
 import { SubmitField } from '../general/SubmitField';
 
 export const LogIn: React.FC = () => {
     const [email, setEmail] = useState<string>();
     const [password, setPassword] = useState<string>();
+    const [errors, setErrors] = useState<string | ErrorDetail[]>();
 
     const onEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);

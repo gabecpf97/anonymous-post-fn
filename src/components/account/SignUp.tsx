@@ -1,16 +1,9 @@
 import React, { ChangeEvent, SyntheticEvent, useState } from 'react'
+import { ErrorDetail } from '../../interfaces/myInterfaces';
 // import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { Error } from '../general/Errors';
 import { FormField } from '../general/FormField';
 import { SubmitField } from '../general/SubmitField';
-
-interface err_detail {
-    value: string,
-    msg: string,
-    param: string,
-    location: string
-}
-
 
 export const SignUp: React.FC = () => {
     // const navgator: NavigateFunction = useNavigate();
@@ -18,7 +11,7 @@ export const SignUp: React.FC = () => {
     const [email, setEmail] = useState<string>();
     const [password, setPassword] = useState<string>();
     const [confirm_password, setConfirm] = useState<string>();
-    const [errors, setErrors] = useState<string | err_detail[]>();
+    const [errors, setErrors] = useState<string | ErrorDetail[]>();
 
     const onUsernameChnage = (e: ChangeEvent<HTMLInputElement>) => {
         setUsername(e.target.value);

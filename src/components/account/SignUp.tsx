@@ -1,5 +1,5 @@
 import React, { ChangeEvent, SyntheticEvent, useState } from 'react'
-import { ErrorDetail } from '../../interfaces/myInterfaces';
+import { ErrorDetail, FetchedData } from '../../interfaces/myInterfaces';
 // import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { Error } from '../general/Errors';
 import { FormField } from '../general/FormField';
@@ -44,14 +44,14 @@ export const SignUp: React.FC = () => {
                 "Content-Type": "application/json",
             }
         });
-        const data: any = await response.json();
+        const data: FetchedData = await response.json();
         if (data.err) {
             setErrors(data.err);
         } else {
             console.log(data);
             // nav to confirm page and ask user to check email
             // navgator('/');
-            localStorage.setItem('userID', data.id);
+            localStorage.setItem('userID', data.id as string);
         }
     }
 

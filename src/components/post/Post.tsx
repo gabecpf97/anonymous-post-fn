@@ -1,18 +1,9 @@
 import React, { useEffect, useState } from 'react'
+import { PostType } from '../../interfaces/myInterfaces';
 import { Error } from '../general/Errors';
 
 interface props {
     id: string
-}
-
-interface PostType {
-    op_name: string,
-    message: string,
-    date: Date,
-    medias: string,
-    genre: string,
-    likes: number,
-    comments: string
 }
 
 export const Post: React.FC<props> = ({ id }) => {

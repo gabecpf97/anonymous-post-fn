@@ -48,10 +48,9 @@ export const SignUp: React.FC = () => {
         if (data.err) {
             setErrors(data.err);
         } else {
-            console.log(data);
+            localStorage.setItem('userID', data.id as string);
             // nav to confirm page and ask user to check email
             // navgator('/');
-            localStorage.setItem('userID', data.id as string);
         }
     }
 

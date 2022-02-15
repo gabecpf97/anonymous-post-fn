@@ -35,7 +35,6 @@ export const LogIn: React.FC = () => {
             localStorage.setItem('user', JSON.stringify(data.theUser));
             // nav to home page
         }
-        console.log(user_info);
     }
     
     return (

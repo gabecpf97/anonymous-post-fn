@@ -30,7 +30,12 @@ export const CommentList: React.FC = () => {
 
     return (
         <div>
-            {/* Show comments */}
+            {comments && comments.map(comment => {
+                return (
+                    // comment
+                    <div />
+                )
+            })}
             {errors && <Error errors={errors} />}
         </div>
     )

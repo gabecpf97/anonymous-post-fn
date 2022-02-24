@@ -3,10 +3,11 @@ import { Error } from '../general/Errors';
 import { Post } from './Post';
 
 interface props {
-    genreID: string
+    genreID?: string,
+    list?: string[]
 }
 
-export const PostList: React.FC<props> = ({ genreID }) => {
+export const PostList: React.FC<props> = ({ genreID, list }) => {
     const [posts, setPosts] = useState<string[]>();
     const [errors, setErrors] = useState<string>();
 
@@ -28,8 +29,11 @@ export const PostList: React.FC<props> = ({ genreID }) => {
                 setErrors(e);
             }
         }
-        fetchPosts();
-    }, [genreID]);
+        if (!list)
+            fetchPosts();
+        else 
+            setPosts(list);
+    }, [genreID, list]);
 
     return (
         <div>

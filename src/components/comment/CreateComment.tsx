@@ -1,5 +1,8 @@
 import React, { ChangeEvent, SyntheticEvent, useState } from 'react'
 import { ErrorDetail, FetchedData } from '../../interfaces/myInterfaces';
+import { Error } from '../general/Errors';
+import { FormField } from '../general/FormField';
+import { SubmitField } from '../general/SubmitField';
 
 interface props {
     id: string
@@ -49,7 +52,14 @@ export const CreateComment: React.FC<props> = ({ id }) => {
 
     return (
         <div>
-            
+            <form onSubmit={(e: SyntheticEvent) => handleSubmit(e)}>
+                <FormField name='Message' type='text' isRequired={true}
+                    onChnageFn={onMsgChange} />
+                <FormField name='Medias' type='file'
+                    onChnageFn={onMediasChange} />
+                <SubmitField display='Post' />
+            </form>
+            {errors && <Error errors={errors} />}
         </div>
     )
 }

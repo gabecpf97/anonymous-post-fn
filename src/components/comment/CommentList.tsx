@@ -2,7 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { ErrorDetail, FetchedData } from '../../interfaces/myInterfaces';
 import { Error } from '../general/Errors';
 
-export const CommentList: React.FC = () => {
+interface props {
+    list?: string[]
+}
+
+export const CommentList: React.FC<props> = ({ list }) => {
     const [comments, setComments] = useState<string[]>();
     const [errors, setErrors] = useState<ErrorDetail[] | string>();
 
@@ -25,8 +29,11 @@ export const CommentList: React.FC = () => {
                 setErrors(err);
             }
         }
-        fetchComments();
-    }, []);
+        if (!list)
+            fetchComments();
+        else    
+            setComments(list);
+    }, [list]);
 
     return (
         <div>

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { ErrorDetail, FetchedData, UserType } from "../../interfaces/myInterfaces";
+import { ErrorDetail, FetchedData, UserDetails, UserType } from "../../interfaces/myInterfaces";
+import { CommentList } from '../comment/CommentList';
+import { PostList } from "../post/PostList";
 
 export const ShowAccount: React.FC = () => {
     const curUser: UserType = JSON.parse(localStorage.getItem('user') || '');
-    const [posts, setPosts] = useState<string[]>();
-    const [liked, setLiked] = useState<string[]>();
-    const [comments, setComments] = useState<string[]>();
+    const [userInfo, setUserInfo] = useState<UserDetails>();
     const [errors, setErrors] = useState<ErrorDetail[] | string>();
 
     useEffect(() => {
@@ -20,9 +20,7 @@ export const ShowAccount: React.FC = () => {
                 if (data.err) {
                     setErrors(data.err);
                 } else {
-                    setPosts(data.thePosts);
-                    // setLiked(data.thePosts);
-                    setComments(data.theComments);
+                    setUserInfo((data.theUser as UserDetails));
                 }
             } catch (err: any) {
                 setErrors(err);
@@ -35,6 +33,7 @@ export const ShowAccount: React.FC = () => {
         <div>
             <p>{curUser.username}</p>
             <p>{curUser.date_join}</p>
+            <PostList list={userInfo?.posts} />
         </div>
     )
 }

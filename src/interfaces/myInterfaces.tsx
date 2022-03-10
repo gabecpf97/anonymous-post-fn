@@ -31,11 +31,21 @@ export interface UserType {
     date_join: Date
 }
 
+export interface UserDetails {
+    username: string,
+    email: string,
+    date_join: Date,
+    posts?: string[],
+    comments?: string[],
+    liked_posts?: string[],
+    liked_comments?: string[]
+}
+
 export interface FetchedData {
     err?: ErrorDetail[] | string,
     success?: boolean,
     token?: string,
-    theUser?: UserType,
+    theUser?: UserType | UserDetails,
     username?: string,
     id?: string,
     thePost?: PostType,

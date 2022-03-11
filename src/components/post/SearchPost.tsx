@@ -17,7 +17,7 @@ export const SearchPost: React.FC = () => {
     const handleSubmit = async (e: SyntheticEvent) => {
         e.preventDefault(); 
         // need to figure out how search should work (genre or text base)
-        const response: Response = await fetch(`http://localhost:5000/post`);
+        const response: Response = await fetch(`http://localhost:5000/posts/search/?s=${text}`);
         const data: FetchedData = await response.json();
         if (data.err) {
             setErrors(data.err);

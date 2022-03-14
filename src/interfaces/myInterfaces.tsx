@@ -31,6 +31,11 @@ export interface UserType {
     date_join: Date
 }
 
+export interface UserDisplayType {
+    op_name: string,
+    icon: string
+}
+
 export interface UserDetails {
     username: string,
     email: string,
@@ -45,7 +50,7 @@ export interface FetchedData {
     err?: ErrorDetail[] | string,
     success?: boolean,
     token?: string,
-    theUser?: UserType | UserDetails,
+    theUser?: UserType | UserDetails | UserDisplayType,
     username?: string,
     id?: string,
     thePost?: PostType,

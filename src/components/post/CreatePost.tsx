@@ -52,6 +52,7 @@ export const CreatePost: React.FC = () => {
                     onChnageFn={onMsgChange} />
                 <FormField name='Medias' type='file'
                     onChnageFn={onMediasChange} />
+                {/* file upload */}
                 <SubmitField display='Post' />
             </form>
             {errors && <Error errors={errors} />}

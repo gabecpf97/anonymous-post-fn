@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { FetchedData } from '../../interfaces/myInterfaces';
+import { ErrorDetail, FetchedData } from '../../interfaces/myInterfaces';
+import { Error } from './Errors';
 
 interface props {
     id: string
@@ -7,6 +8,8 @@ interface props {
 
 export const LikeComponent: React.FC<props> = ({ id }) => {
     const [clickStatus, setClickStatus] = useState<boolean>();
+    const [callType, setCallType] = useState<string>();
+    const [errors, setErrors] = useState<ErrorDetail[] | string>();
 
     useEffect(() => {
         const checkStatus = async () => {
@@ -18,12 +21,12 @@ export const LikeComponent: React.FC<props> = ({ id }) => {
                 });
                 const data: FetchedData = await response.json();
                 if (data.err) {
-                    console.log(data.err);
+                    setErrors(data.err);
                 } else {
-                    // setstatus
+                    // setstatus and set call type
                 }
-            } catch (err) {
-                console.log(err);
+            } catch (err: any) {
+                setErrors(err);
             }
         }
         checkStatus();
@@ -31,23 +34,24 @@ export const LikeComponent: React.FC<props> = ({ id }) => {
 
     // need to change fetch depends on status
     const handleLike: Function = async () => {
-        const resposne: Response = await fetch(`http://localhost:5000/post/like/${id}`, {
+        const resposne: Response = await fetch(`http://localhost:5000/post/${id}/${callType}`, {
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem('token')}`
             }
         });
         const data: FetchedData = await resposne.json();
         if (data.err) {
-            console.log(data.err);
+            setErrors(data.err);
         } else {
-            // fetch liked number again
+            setClickStatus(!clickStatus);
         }
     }
 
     return (
         <div>
             {/* change button depend on status */}
-            <button onClick={() => handleLike()}>Like</button>
+            <button onClick={() => handleLike()}>{clickStatus ? 'like' : 'unlike'}</button>
+            {errors && <Error errors={errors} />}
         </div>
     )
 }

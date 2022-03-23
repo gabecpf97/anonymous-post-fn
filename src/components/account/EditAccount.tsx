@@ -1,4 +1,5 @@
 import React, { ChangeEvent, SyntheticEvent, useState } from 'react'
+import { FetchedData } from '../../interfaces/myInterfaces';
 import { FormField } from '../general/FormField';
 import { SubmitField } from '../general/SubmitField';
 
@@ -16,6 +17,22 @@ export const EditAccount: React.FC = () => {
 
     const handleSubmit: Function = async (e: SyntheticEvent) => {
         // change account info fetch call
+        const response: Response = await fetch(`http://localhost:5000/user/edit`, {
+            body: JSON.stringify({
+                email,
+                password
+            }),
+            headers: {
+                "Authorization": `bearer ${localStorage.getItem('token')}`,
+                "Content-Type": "application/json"
+            }
+        });
+        const data: FetchedData = await response.json();
+        if (data.err) {
+            // hadle error
+        } else {
+            // reload account page
+        }
     }
 
     return (

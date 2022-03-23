@@ -1,5 +1,7 @@
 import React, { ChangeEvent, SyntheticEvent, useState } from 'react'
 import { FetchedData } from '../../interfaces/myInterfaces';
+import { FormField } from '../general/FormField';
+import { SubmitField } from '../general/SubmitField';
 
 export const ChangePassword: React.FC = () => {
     const [password, setPassword] = useState<string>();
@@ -41,7 +43,15 @@ export const ChangePassword: React.FC = () => {
 
     return (
         <div>
-
+            <form onSubmit={(e: SyntheticEvent) => handleSubmit(e)}>
+                <FormField name='password' type='password' isRequired={true}
+                    onChnageFn={onPasswordChange} />
+                <FormField name='new_password' type='text' isRequired={true}
+                    onChnageFn={onNewChange} />
+                <FormField name='confirm_password' type='text' isRequired={true}
+                    onChnageFn={onConfirmChange} />
+                <SubmitField display='save' />
+            </form>
         </div>
     )
 }

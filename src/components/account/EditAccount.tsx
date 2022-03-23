@@ -16,7 +16,6 @@ export const EditAccount: React.FC = () => {
     }
 
     const handleSubmit: Function = async (e: SyntheticEvent) => {
-        // change account info fetch call
         const response: Response = await fetch(`http://localhost:5000/user/edit`, {
             body: JSON.stringify({
                 email,

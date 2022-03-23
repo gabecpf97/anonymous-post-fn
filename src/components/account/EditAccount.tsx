@@ -5,21 +5,15 @@ import { SubmitField } from '../general/SubmitField';
 
 export const EditAccount: React.FC = () => {
     const [email, setEmail] = useState<string>();
-    const [password, setPassword] = useState<string>();
 
     const changeEmail = (e: ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);
-    }
-
-    const changePassword = (e: ChangeEvent<HTMLInputElement>) => {
-        setPassword(e.target.value);
     }
 
     const handleSubmit: Function = async (e: SyntheticEvent) => {
         const response: Response = await fetch(`http://localhost:5000/user/edit`, {
             body: JSON.stringify({
                 email,
-                password
             }),
             headers: {
                 "Authorization": `bearer ${localStorage.getItem('token')}`,
@@ -37,8 +31,6 @@ export const EditAccount: React.FC = () => {
     return (
         <div>
             <form onSubmit={(e: SyntheticEvent) => handleSubmit(e)}>
-                <FormField name='email' type='string' onChnageFn={changeEmail}
-                    isRequired={true} />
                 <FormField name='email' type='string' onChnageFn={changeEmail}
                     isRequired={true} />
                 <SubmitField display='edit' />

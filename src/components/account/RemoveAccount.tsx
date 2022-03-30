@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
-import { FetchedData } from '../../interfaces/myInterfaces';
+import { ErrorDetail, FetchedData } from '../../interfaces/myInterfaces';
+import { Error } from '../general/Errors';
 
 export const RemoveAccount: React.FC = () => {
     const [buttStatus, setButStatus] = useState<boolean>(false);
+    const [errors, setErrors] = useState<ErrorDetail[] | string>()
 
     const changeStatus = () => {
         setButStatus(!buttStatus);
@@ -16,7 +18,7 @@ export const RemoveAccount: React.FC = () => {
         });
         const data: FetchedData = await response.json();
         if (data.err) {
-            // error handle
+            setErrors(data.err);
         } else {
             // log out and go to login / sign up page
         }
@@ -34,6 +36,7 @@ export const RemoveAccount: React.FC = () => {
             {!buttStatus &&
                 <button onClick={() => changeStatus()}>Remove Account</button>
             }
+            {errors && <Error errors={errors} />}
         </div>
     )
 }

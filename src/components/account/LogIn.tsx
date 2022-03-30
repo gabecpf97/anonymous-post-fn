@@ -1,4 +1,5 @@
 import React, { ChangeEvent, SyntheticEvent, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { ErrorDetail, FetchedData } from '../../interfaces/myInterfaces';
 import { Error } from '../general/Errors';
 import { FormField } from '../general/FormField';
@@ -8,6 +9,7 @@ export const LogIn: React.FC = () => {
     const [email, setEmail] = useState<string>();
     const [password, setPassword] = useState<string>();
     const [errors, setErrors] = useState<string | ErrorDetail[]>();
+    const navigator = useNavigate();
 
     const onEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);
@@ -33,7 +35,7 @@ export const LogIn: React.FC = () => {
         } else {
             localStorage.setItem('token', data.token as string);
             localStorage.setItem('user', JSON.stringify(data.theUser));
-            // nav to home page
+            navigator('/');
         }
     }
     

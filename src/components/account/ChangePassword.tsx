@@ -1,5 +1,7 @@
 import React, { ChangeEvent, SyntheticEvent, useState } from 'react'
-import { FetchedData } from '../../interfaces/myInterfaces';
+import { useNavigate } from 'react-router-dom';
+import { ErrorDetail, FetchedData } from '../../interfaces/myInterfaces';
+import { Error } from '../general/Errors';
 import { FormField } from '../general/FormField';
 import { SubmitField } from '../general/SubmitField';
 
@@ -7,6 +9,8 @@ export const ChangePassword: React.FC = () => {
     const [password, setPassword] = useState<string>();
     const [newPassword, setNewPassword] = useState<string>();
     const [confirm, setConfirm] = useState<string>();
+    const [errors, setErrors] = useState<ErrorDetail[] | string>();
+    const navigator = useNavigate();
 
     const onPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
         setPassword(e.target.value);
@@ -35,9 +39,9 @@ export const ChangePassword: React.FC = () => {
         });
         const data: FetchedData = await resposne.json();
         if (data.err) {
-            // error handle
+            setErrors(data.err);
         } else {
-            // go back to account page
+            navigator('/account');
         }
     }
 
@@ -52,6 +56,7 @@ export const ChangePassword: React.FC = () => {
                     onChnageFn={onConfirmChange} />
                 <SubmitField display='save' />
             </form>
+            {errors && <Error errors={errors} />}
         </div>
     )
 }

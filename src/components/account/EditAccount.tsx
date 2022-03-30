@@ -1,10 +1,15 @@
 import React, { ChangeEvent, SyntheticEvent, useState } from 'react'
-import { FetchedData } from '../../interfaces/myInterfaces';
+import { useNavigate } from 'react-router-dom';
+import { ErrorDetail, FetchedData } from '../../interfaces/myInterfaces';
+import { Error } from '../general/Errors';
 import { FormField } from '../general/FormField';
 import { SubmitField } from '../general/SubmitField';
 
 export const EditAccount: React.FC = () => {
     const [email, setEmail] = useState<string>();
+    const [errors, setErrors] = useState<ErrorDetail[] | string>();
+    const navigator = useNavigate();
+
 
     const changeEmail = (e: ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);
@@ -22,9 +27,9 @@ export const EditAccount: React.FC = () => {
         });
         const data: FetchedData = await response.json();
         if (data.err) {
-            // hadle error
+            setErrors(data.err);
         } else {
-            // reload account page
+            navigator('/account');
         }
     }
 
@@ -35,6 +40,7 @@ export const EditAccount: React.FC = () => {
                     isRequired={true} />
                 <SubmitField display='edit' />
             </form>
+            {errors && <Error errors={errors} />}
         </div>
     )
 }

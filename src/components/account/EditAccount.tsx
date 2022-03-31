@@ -1,5 +1,5 @@
 import React, { ChangeEvent, SyntheticEvent, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { ErrorDetail, FetchedData } from '../../interfaces/myInterfaces';
 import { Error } from '../general/Errors';
 import { FormField } from '../general/FormField';
@@ -8,7 +8,7 @@ import { SubmitField } from '../general/SubmitField';
 export const EditAccount: React.FC = () => {
     const [email, setEmail] = useState<string>();
     const [errors, setErrors] = useState<ErrorDetail[] | string>();
-    const navigator = useNavigate();
+    const navigator: NavigateFunction = useNavigate();
 
 
     const changeEmail = (e: ChangeEvent<HTMLInputElement>) => {

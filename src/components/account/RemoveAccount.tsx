@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { ErrorDetail, FetchedData } from '../../interfaces/myInterfaces';
 import { Error } from '../general/Errors';
 
 export const RemoveAccount: React.FC = () => {
     const [buttStatus, setButStatus] = useState<boolean>(false);
     const [errors, setErrors] = useState<ErrorDetail[] | string>();
-    const navigator = useNavigate();
+    const navigator: NavigateFunction = useNavigate();
 
     const changeStatus = () => {
         setButStatus(!buttStatus);

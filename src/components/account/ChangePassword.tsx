@@ -1,5 +1,5 @@
 import React, { ChangeEvent, SyntheticEvent, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { ErrorDetail, FetchedData } from '../../interfaces/myInterfaces';
 import { Error } from '../general/Errors';
 import { FormField } from '../general/FormField';
@@ -10,7 +10,7 @@ export const ChangePassword: React.FC = () => {
     const [newPassword, setNewPassword] = useState<string>();
     const [confirm, setConfirm] = useState<string>();
     const [errors, setErrors] = useState<ErrorDetail[] | string>();
-    const navigator = useNavigate();
+    const navigator: NavigateFunction = useNavigate();
 
     const onPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
         setPassword(e.target.value);

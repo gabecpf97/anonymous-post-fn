@@ -9,7 +9,7 @@ export const RelationButt: React.FC<props> = ({ id }) => {
     const [buttStatus, setButtStatus] = useState<boolean>();
 
     const handleChagnes = async () => {
-        const response: Response = await fetch(`http://localhost:5000/post/like/${id}`, {
+        const response: Response = await fetch(`http://localhost:5000/post/${id}/${buttStatus ? 'unlike' : 'like'}`, {
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem('token')}`
             }

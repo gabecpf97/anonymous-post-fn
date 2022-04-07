@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { PostType } from '../../interfaces/myInterfaces';
 import { Error } from '../general/Errors';
+import { RelationButt } from '../general/RelationButt';
 
 interface props {
     id: string
@@ -40,6 +41,7 @@ export const Post: React.FC<props> = ({ id }) => {
                     <p>{post.genre}</p>
                     <p>{post.date}</p>
                     <p>{post.likes}</p>
+                    <RelationButt id={id} />
                     {/* get media */}
                 </div>
             }

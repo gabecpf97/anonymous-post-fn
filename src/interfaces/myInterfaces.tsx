@@ -12,7 +12,7 @@ export interface PostType {
     medias?: string,
     genre?: string,
     likes: number,
-    comments?: string
+    comments?: string[]
 }
 
 export interface CommentType {

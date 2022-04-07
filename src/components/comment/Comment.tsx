@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { CommentType, ErrorDetail, FetchedData } from '../../interfaces/myInterfaces'
 import { Error } from '../general/Errors';
+import { RelationButt } from '../general/RelationButt';
 
 interface props {
     id: string
@@ -39,6 +40,7 @@ export const Comment: React.FC<props> = ({ id }) => {
                     <p>{comment.message}</p>
                     <p>{comment.likes}</p>
                     <p>{comment.date}</p>
+                    <RelationButt id={id} />
                 </div>
             }
             {errors && <Error errors={errors} />}
